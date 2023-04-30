@@ -1,7 +1,7 @@
-﻿@model IEnumerable<Store.Book>
+﻿@model Book[]
 
 @{
-    ViewData["Title"] = "Index";
+    ViewData["Title"] = "Результат пойска";
 }
 
 <h1>Index</h1>
@@ -9,36 +9,17 @@
     <a asp-action="Create">Create New</a>
 </p>
 
-<table class="table">
-    <thead>
-
-        <tr>
-            <th>
-                @Html.DisplayNameFor(model => model.Id)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.Title)
-            </th>
-        </tr>
-    </thead>
-<tbody>
-        @foreach(var item in Model) {
-         <tr>
-             <td>
-                    @Html.DisplayFor(modelitem => item.Id)
-             </td>
-        
-                <td>
-                    @Html.DisplayFor(modelitem => item.Title)
-                </td>
-                <td>
-                    @Html.ActionLink("Edit","Edit", new{/*id=item.PrimaryKay*/}) |
-                    @Html.ActionLink("Details","Details", new{/*id=item.PrimaryKay*/}) |
-                    @Html.ActionLink("Delete","Delete", new{/*id=item.PrimaryKay*/}) |
-                </td>
-            </tr>
-            
+    @if (Model.Length == 0)
+    {
+        <P>Ничего не найдено</P>
+    }
+    else
+    {
+        <ul>
+            @foreach(var book in Model)
+        {
+            <li><a href="@Url.Action("Index", "Book",new{ id = book.Id})" >@book.Title </a></li>
         }
-    </tbody>
-
-</table>
+    </ul>
+     }
+    

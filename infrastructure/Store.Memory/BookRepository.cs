@@ -7,9 +7,9 @@ namespace Store.Memory
     {
         private readonly Book[] books = new Book[] 
         {
-        new Book (1,"ISBN 12312-12312","D.Knuth","Art of Programming"),
-        new Book (2,"ISBN 13412-12312","H.Fowler","Refactoring"),
-        new Book (3,"ISBN 14512-12312","B.Kernighan","C Programming Language")
+        new Book (1,"ISBN 12312-12312","D.Knuth","Art of Programming","description1",7.19m),
+        new Book (2,"ISBN 13412-12312","H.Fowler","Refactoring","description2",12.45m),
+        new Book (3,"ISBN 14512-12312","B.Kernighan","C Programming Language","description3",14.98m)
 
         };
 
@@ -28,6 +28,11 @@ namespace Store.Memory
             return books.Where(book => book.Author.Contains(query)
                    || book.Title.Contains(query))
                  .ToArray();
+        }
+
+        public Book GetById(int id)
+        {
+            return books.Single(book => book.Id == id);
         }
     }
 }
