@@ -5,7 +5,7 @@ namespace Store.Memory
 {
     public class BookRepository : IBookRepository
     {
-        private readonly Book[] books = new Book[] 
+        private readonly Book[] books = new Book[]
         {
         new Book (1,"ISBN 12312-12312","D.Knuth","Art of Programming","description1",7.19m),
         new Book (2,"ISBN 13412-12312","H.Fowler","Refactoring","description2",12.45m),
@@ -13,15 +13,15 @@ namespace Store.Memory
 
         };
 
-       
+
 
         public Book[] GetAllByIsbn(string isbn)
         {
-          return books.Where(book => book.Isbn == isbn)
-                .ToArray();
+            return books.Where(book => book.Isbn == isbn)
+                  .ToArray();
         }
 
-   
+
 
         public Book[] GetAllByTitleOrAuthor(string query)
         {
