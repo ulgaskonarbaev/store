@@ -1,6 +1,7 @@
 ﻿using System;
 using Store;
 using System.Linq;
+
 namespace Store.Memory
 {
     public class BookRepository : IBookRepository
@@ -13,7 +14,13 @@ namespace Store.Memory
 
         };
 
-
+        public Book[] GetAllByIds(IEnumerable<int> bookIds)
+        {
+           var foundBooks = from book in books
+                            join bookId in bookIds on book.Id equals bookId
+                            select book;
+            return foundBooks.ToArray();
+        }
 
         public Book[] GetAllByIsbn(string isbn)
         {
@@ -34,5 +41,7 @@ namespace Store.Memory
         {
             return books.Single(book => book.Id == id);
         }
+
+
     }
 }
